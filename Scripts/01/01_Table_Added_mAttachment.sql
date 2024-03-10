@@ -1,0 +1,20 @@
+IF NOT EXISTS (SELECT * FROM sys.tables where OBJECT_ID=OBJECT_ID(N'[dbo].[mAttachment]') AND type in (N'U'))
+BEGIN
+	CREATE TABLE mAttachment(
+	AttachmentID INT IDENTITY(1,1),
+	AttachmentName VARCHAR(50),
+	TabName VARCHAR(50),
+	IsActive TINYINT,
+	CreatedBy INT,
+	CreatedOn DATE,
+	RevisedBy INT,
+	ReviesedOn DATE
+
+
+CONSTRAINT [PK_mAttachment] PRIMARY KEY CLUSTERED 
+(
+	[AttachmentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+

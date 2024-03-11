@@ -1,0 +1,26 @@
+<script>
+    function validateFileSize(sender, args) {
+        var fileInput = args.get_inputFile();
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size; // Size in bytes
+            var maxSize = 10 * 1024 * 1024; // 10 MB in bytes
+
+            if (fileSize > maxSize) {
+                args.set_cancel(true);
+                alert('File size exceeds the maximum allowed size of 10 MB.');
+            }
+        }
+    }
+</script>
+
+
+
+<asp:Repeater ID="rptAttachment" runat="server">
+    <ItemTemplate>
+        <div>
+            <label class="form-label"><%#Eval("AttachmentName") %></label>
+            <asp:HiddenField ID="AttachmentTypeID" runat="server" Value='<%# Eval("AttachmentTypeID") %>' />
+            <asp:AsyncFileUpload ID="AsyncFileUpload1" runat="server" OnClientUploadStarted="validateFileSize" OnUploadedComplete="AsyncFileUpload1_UploadedComplete" ClientIDMode="AutoID" />
+        </div>
+    </ItemTemplate>
+</asp:Repeater>

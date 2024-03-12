@@ -12,24 +12,20 @@ namespace BusinessObject
     using System;
     using System.Collections.Generic;
     
-    public partial class mAttachment
+    public partial class UserDocument
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public mAttachment()
-        {
-            this.mAttachmentTypes = new HashSet<mAttachmentType>();
-        }
-    
-        public int AttachmentID { get; set; }
-        public string AttachmentName { get; set; }
-        public string TabName { get; set; }
+        public int DocumentID { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string DocumentName { get; set; }
+        public string FilePath { get; set; }
+        public System.DateTime UploadDate { get; set; }
+        public Nullable<int> AttachmentTypeID { get; set; }
         public Nullable<byte> IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<int> RevisedBy { get; set; }
         public Nullable<System.DateTime> ReviesedOn { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<mAttachmentType> mAttachmentTypes { get; set; }
+        public virtual mAttachmentType mAttachmentType { get; set; }
     }
 }

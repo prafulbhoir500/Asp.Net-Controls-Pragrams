@@ -54,6 +54,9 @@
     <Compile Include="mAttachment.cs">
       <DependentUpon>MyEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="mAttachmentType.cs">
+      <DependentUpon>MyEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="MyEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,6 +73,9 @@
       <DependentUpon>MyEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDocument.cs">
+      <DependentUpon>MyEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserInfo.cs">
       <DependentUpon>MyEntity.tt</DependentUpon>
     </Compile>

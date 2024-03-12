@@ -27,5 +27,7 @@ namespace BusinessObject
     
         public virtual DbSet<mAttachment> mAttachments { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
+        public virtual DbSet<mAttachmentType> mAttachmentTypes { get; set; }
+        public virtual DbSet<UserDocument> UserDocuments { get; set; }
     }
 }

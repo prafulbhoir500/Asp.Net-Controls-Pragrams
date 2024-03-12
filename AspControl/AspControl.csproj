@@ -80,6 +80,7 @@
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Configuration\Master\Attachment.aspx" />
     <Content Include="FileUploadControl\FileUploadInRepeaterControl.aspx" />
+    <Content Include="FileUploadControl\FormWithFileUpload.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LoginForm\LoginForm1.aspx" />
     <Content Include="Web.config" />
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="FileUploadControl\FileUploadInRepeaterControl.aspx.designer.cs">
       <DependentUpon>FileUploadInRepeaterControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUploadControl\FormWithFileUpload.aspx.cs">
+      <DependentUpon>FormWithFileUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileUploadControl\FormWithFileUpload.aspx.designer.cs">
+      <DependentUpon>FormWithFileUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

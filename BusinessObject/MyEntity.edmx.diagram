@@ -7,7 +7,11 @@
       <Diagram DiagramId="b8b70b88aa794425b028dc3780b99f11" Name="Diagram1">
         <EntityTypeShape EntityType="MyModel.mAttachment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyModel.UserInfo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-      </Diagram>
+        <EntityTypeShape EntityType="MyModel.mAttachmentType" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="MyModel.UserDocument" Width="1.5" PointX="5.25" PointY="6" />
+        <AssociationConnector Association="MyModel.FK_mAttachmentType_mAttachment" />
+        <AssociationConnector Association="MyModel.FK_UserDocument_mAttachmentType" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

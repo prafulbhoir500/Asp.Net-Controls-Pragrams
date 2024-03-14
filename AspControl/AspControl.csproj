@@ -80,9 +80,12 @@
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Configuration\Master\Attachment.aspx" />
     <Content Include="FileUploadControl\FileUploadInRepeaterControl.aspx" />
+    <Content Include="FileUploadControl\FileUpload_ProfilePhoto.aspx" />
     <Content Include="FileUploadControl\FormWithFileUpload.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LoginForm\LoginForm1.aspx" />
+    <Content Include="ToastMessage\dashboard.aspx" />
+    <Content Include="ToastMessage\JSToast.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,13 @@
     </Compile>
     <Compile Include="FileUploadControl\FileUploadInRepeaterControl.aspx.designer.cs">
       <DependentUpon>FileUploadInRepeaterControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUploadControl\FileUpload_ProfilePhoto.aspx.cs">
+      <DependentUpon>FileUpload_ProfilePhoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileUploadControl\FileUpload_ProfilePhoto.aspx.designer.cs">
+      <DependentUpon>FileUpload_ProfilePhoto.aspx</DependentUpon>
     </Compile>
     <Compile Include="FileUploadControl\FormWithFileUpload.aspx.cs">
       <DependentUpon>FormWithFileUpload.aspx</DependentUpon>
@@ -118,10 +128,32 @@
       <DependentUpon>LoginForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToastMessage\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ToastMessage\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ToastMessage\JSToast.aspx.cs">
+      <DependentUpon>JSToast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ToastMessage\JSToast.aspx.designer.cs">
+      <DependentUpon>JSToast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ToastMessage\SiteMaster.Master.cs">
+      <DependentUpon>SiteMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ToastMessage\SiteMaster.Master.designer.cs">
+      <DependentUpon>SiteMaster.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\default\default.skin" />
     <None Include="packages.config" />
+    <Content Include="ToastMessage\SiteMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

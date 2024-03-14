@@ -86,6 +86,11 @@ namespace AspControl.FileUploadControl
             // Get the reference to the AsyncFileUpload control
             AjaxControlToolkit.AsyncFileUpload asyncFileUpload = (AjaxControlToolkit.AsyncFileUpload)sender;
 
+            // Find the corresponding Label in the same Repeater item
+            Label lblFileName = (Label)asyncFileUpload.Parent.FindControl("lblFileName");
+
+            // Display the file name
+            lblFileName.Text = e.FileName;
 
             RepeaterItem item = (RepeaterItem)asyncFileUpload.Parent;
 

@@ -79,6 +79,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Configuration\Master\Attachment.aspx" />
+    <Content Include="FileUploadControl\AjaxFileUpload.aspx" />
     <Content Include="FileUploadControl\FileUploadInRepeaterControl.aspx" />
     <Content Include="FileUploadControl\FileUpload_ProfilePhoto.aspx" />
     <Content Include="FileUploadControl\FormWithFileUpload.aspx" />
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="Configuration\Master\Attachment.aspx.designer.cs">
       <DependentUpon>Attachment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUploadControl\AjaxFileUpload.aspx.cs">
+      <DependentUpon>AjaxFileUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileUploadControl\AjaxFileUpload.aspx.designer.cs">
+      <DependentUpon>AjaxFileUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="FileUploadControl\FileUploadInRepeaterControl.aspx.cs">
       <DependentUpon>FileUploadInRepeaterControl.aspx</DependentUpon>

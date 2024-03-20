@@ -97,7 +97,7 @@ namespace AspControl.FileUploadControl
             //string attachmentName = ((Label)item.FindControl("lblAttachmentName")).Text;
 
             HiddenField attachmentTypeIdHiddenField = (HiddenField)item.FindControl("AttachmentTypeID");
-            string attachmentTypeId = attachmentTypeIdHiddenField.Value;
+            int attachmentTypeId = Convert.ToInt32(attachmentTypeIdHiddenField.Value);
 
             // Check if a file was uploaded
             if (asyncFileUpload.HasFile)
@@ -119,6 +119,15 @@ namespace AspControl.FileUploadControl
                 // Save the file to the specified path
                 //postedFile.SaveAs(savePath);
                 postedFile.SaveAs(filePath);
+
+                mAttachment obj = DB.mAttachments.FirstOrDefault(x => x.AttachmentID == attachmentTypeId);
+                if (obj != null)
+                {
+
+                    obj.TabName = fileName;
+                    DB.SaveChanges();
+                    ClientScript.RegisterClientScriptBlock(Page.GetType(), "alert", "alert('File Uploaded...')", true);
+                }
             }
         }
 

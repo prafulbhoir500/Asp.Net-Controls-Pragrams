@@ -10,7 +10,7 @@
     <link href="../Assets/css/bootstrap.css" rel="stylesheet" />
     <script type="text/javascript">
         function uploadComplete(sender, args) {
-            debugger;
+            //debugger;
             // Get the reference to the AsyncFileUpload control
             var asyncFileUpload = document.getElementById(sender.id);
 

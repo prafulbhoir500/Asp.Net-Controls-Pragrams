@@ -48,43 +48,26 @@
 
         function uploadComplete(sender, args) {
             debugger;
-            // Get the reference to the AsyncFileUpload control
-            var asyncFileUpload = sender.get_element();
+            
+            var fileUpload = sender._element;
+            var parentElement = fileUpload.parentNode.parentNode;
 
-            // Find the parent repeater item
-            var parentItem = getParentRepeaterItem(asyncFileUpload);
-
-            // Find the label within the parent repeater item
-            var lblFileName = parentItem.querySelector("label[id$='_lblFileName']");
-
-            // Update the label text with the uploaded file name
-            if (lblFileName) {
-                lblFileName.innerText = args.get_fileName();
+           // var fileSize = args.get_length() / (1024 * 1024); // Convert bytes to MB
+            var fileSize = args.get_length() / 1024; // Convert bytes to KB
+            if (fileSize > 1024) {
+                alert("File size exceeds the limit (1MB). Please upload a smaller file.");
+                // Optionally, clear the file input or perform other actions
+                return; // Exit function if file size exceeds the limit
             }
+
+            // Update the label text
+            var lblName = parentElement.querySelector('#lblFileName');
+            lblName.innerHTML = args.get_fileName();
+
+            var btnview = parentElement.querySelector('#btnViewImage');
+            btnview.classList.remove('d-none');
         }
 
-        function getParentRepeaterItem(element) {
-            debugger;
-            // Traverse up the DOM to find the parent repeater item
-            if (!element) {
-                console.error("Element is null or undefined.");
-                return null;
-            }
-
-            // Traverse up the DOM until we find a parent element with class "repeater-item"
-            while (element && !element.classList.contains("repeater-item")) {
-                element = element.parentNode;
-            }
-
-            if (!element) {
-                console.error("Parent repeater item not found.");
-                return null;
-            }
-
-            return element;
-        }
-
-            //__doPostBack('<%= UpdatePanel1.ClientID %>', '');
     </script>
 </head>
 <body class="container">
@@ -163,6 +146,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <asp:Label ID="lblFileName" runat="server" Text='<%#Eval("TabName").ToString()==""?"No File Available":Eval("TabName").ToString() %>' ClientIDMode="Static"></asp:Label>
+                                                <asp:LinkButton ID="btnViewImage" ClientIDMode="Static" CssClass="btn btn-sm btn-warning d-none" runat="server">View</asp:LinkButton>
                                             </div>
                                         </div>
                                     </ItemTemplate>

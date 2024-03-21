@@ -10,28 +10,28 @@
     <link href="../Assets/css/bootstrap.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        function uploadComplete(sender, args) {
-            debugger;
-            // Get the reference to the AsyncFileUpload control
-            var asyncFileUpload = document.getElementById(sender.id);
+        //function uploadComplete(sender, args) {
+        //    debugger;
+        //    // Get the reference to the AsyncFileUpload control
+        //    var asyncFileUpload = document.getElementById(sender.id);
 
-            // Check if asyncFileUpload is not null and its parentNode is not null
-            if (asyncFileUpload && asyncFileUpload.parentNode) {
-                // Traverse up the DOM to find the parent row element
-                var row = asyncFileUpload.parentNode.parentNode; // Assuming two levels up from AsyncFileUpload is the row
+        //    // Check if asyncFileUpload is not null and its parentNode is not null
+        //    if (asyncFileUpload && asyncFileUpload.parentNode) {
+        //        // Traverse up the DOM to find the parent row element
+        //        var row = asyncFileUpload.parentNode.parentNode; // Assuming two levels up from AsyncFileUpload is the row
 
-                // Find the label within the row using querySelector
-                var lblFileName = row.querySelector("label[id$='_lblFileName']");
+        //        // Find the label within the row using querySelector
+        //        var lblFileName = row.querySelector("label[id$='_lblFileName']");
 
-                // Update the label text with the uploaded file name
-                if (lblFileName) {
-                    lblFileName.innerText = args.get_fileName();
-                }
-            }
-            //location.reload();
-        }
+        //        // Update the label text with the uploaded file name
+        //        if (lblFileName) {
+        //            lblFileName.innerText = args._fileName();
+        //        }
+        //    }
+        //    //location.reload();
+        //}
         function BindRepeater() {
-            debugger;
+            //debugger;
             // Call the server-side method to rebind the Repeater
             PageMethods.BindRepeaterOnUpload(onSuccess, onFailure);
         }
@@ -43,6 +43,45 @@
         function onFailure(error) {
             // If the binding operation fails, you can handle the error here
             alert("Failed to bind repeater: " + error.get_message());
+        }
+
+
+        function uploadComplete(sender, args) {
+            debugger;
+            // Get the reference to the AsyncFileUpload control
+            var asyncFileUpload = sender.get_element();
+
+            // Find the parent repeater item
+            var parentItem = getParentRepeaterItem(asyncFileUpload);
+
+            // Find the label within the parent repeater item
+            var lblFileName = parentItem.querySelector("label[id$='_lblFileName']");
+
+            // Update the label text with the uploaded file name
+            if (lblFileName) {
+                lblFileName.innerText = args.get_fileName();
+            }
+        }
+
+        function getParentRepeaterItem(element) {
+            debugger;
+            // Traverse up the DOM to find the parent repeater item
+            if (!element) {
+                console.error("Element is null or undefined.");
+                return null;
+            }
+
+            // Traverse up the DOM until we find a parent element with class "repeater-item"
+            while (element && !element.classList.contains("repeater-item")) {
+                element = element.parentNode;
+            }
+
+            if (!element) {
+                console.error("Parent repeater item not found.");
+                return null;
+            }
+
+            return element;
         }
 
             //__doPostBack('<%= UpdatePanel1.ClientID %>', '');

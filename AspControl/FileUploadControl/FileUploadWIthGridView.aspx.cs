@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using BusinessObject;
+using System.Configuration;
+using System.IO;
 
 namespace AspControl.FileUploadControl
 {
-    public partial class AjaxFileUpload : System.Web.UI.Page
+    public partial class FileUploadWIthGridView : System.Web.UI.Page
     {
         MyEntities DB = new MyEntities();
         protected void Page_Load(object sender, EventArgs e)
@@ -27,8 +27,8 @@ namespace AspControl.FileUploadControl
             try
             {
                 var data = DB.mAttachments.Where(x => x.IsActive == 1).ToList();
-                rptAttachment.DataSource = data;
-                rptAttachment.DataBind();
+                GridView1.DataSource = data;
+                GridView1.DataBind();
             }
             catch (Exception ex)
             {
@@ -36,17 +36,20 @@ namespace AspControl.FileUploadControl
             }
         }
 
-        [System.Web.Services.WebMethod]
-        public static string BindRepeaterOnUpload()
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            try
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
-                return "Success"; // Return a success message
-            }
-            catch (Exception ex)
-            {
-                return ex.Message; // Return the error message in case of failure
+                Label lblFileName = (Label)e.Row.FindControl("lblFileName");
+                HiddenField attachmentTypeID = (HiddenField)e.Row.FindControl("AttachmentTypeID");
+
+                // Set the file name for the label based on the AttachmentID
+                int attachmentID = Convert.ToInt32(attachmentTypeID.Value);
+                mAttachment obj = DB.mAttachments.FirstOrDefault(x => x.AttachmentID == attachmentID);
+                if (obj != null)
+                {
+                    lblFileName.Text = string.IsNullOrEmpty(obj.TabName) ? "No File Available" : obj.TabName;
+                }
             }
         }
         protected void AsyncFileUpload1_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
@@ -60,7 +63,8 @@ namespace AspControl.FileUploadControl
             // Display the file name
             lblFileName.Text = e.FileName;
 
-            RepeaterItem item = (RepeaterItem)asyncFileUpload.Parent;
+            //RepeaterItem item = (RepeaterItem)asyncFileUpload.Parent;
+            GridViewRow item = (GridViewRow)asyncFileUpload.NamingContainer;
 
             //string attachmentName = ((Label)item.FindControl("lblAttachmentName")).Text;
 
@@ -98,7 +102,7 @@ namespace AspControl.FileUploadControl
                 }
                 try
                 {
-                    UpdatePanel1.Update();
+                    //UpdatePanel1.Update();
                     //ScriptManager.RegisterStartupScript(this, GetType(), "BindRepeater", "BindRepeater();", true);
                     //bindData();
                 }

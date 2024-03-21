@@ -81,6 +81,7 @@
     <Content Include="Configuration\Master\Attachment.aspx" />
     <Content Include="FileUploadControl\AjaxFileUpload.aspx" />
     <Content Include="FileUploadControl\FileUploadInRepeaterControl.aspx" />
+    <Content Include="FileUploadControl\FileUploadWIthGridView.aspx" />
     <Content Include="FileUploadControl\FileUpload_ProfilePhoto.aspx" />
     <Content Include="FileUploadControl\FormWithFileUpload.aspx" />
     <Content Include="Global.asax" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="FileUploadControl\FileUploadInRepeaterControl.aspx.designer.cs">
       <DependentUpon>FileUploadInRepeaterControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUploadControl\FileUploadWIthGridView.aspx.cs">
+      <DependentUpon>FileUploadWIthGridView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileUploadControl\FileUploadWIthGridView.aspx.designer.cs">
+      <DependentUpon>FileUploadWIthGridView.aspx</DependentUpon>
     </Compile>
     <Compile Include="FileUploadControl\FileUpload_ProfilePhoto.aspx.cs">
       <DependentUpon>FileUpload_ProfilePhoto.aspx</DependentUpon>

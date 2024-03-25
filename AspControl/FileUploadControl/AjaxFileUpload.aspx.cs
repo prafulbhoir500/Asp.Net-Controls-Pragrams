@@ -4,6 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
@@ -19,6 +20,7 @@ namespace AspControl.FileUploadControl
             if (!IsPostBack)
             {
                 bindData();
+                LoadDropdownOptions();
             }
         }
 
@@ -41,7 +43,7 @@ namespace AspControl.FileUploadControl
         {
             try
             {
-                
+
                 return "Success"; // Return a success message
             }
             catch (Exception ex)
@@ -110,5 +112,71 @@ namespace AspControl.FileUploadControl
             }
         }
 
+        #region selected index change
+        [WebMethod]
+        public static bool CheckCondition(string selectedValue)
+        {
+            bool condition = false;
+
+            try
+            {
+                // Establish connection to the database
+                //using (SqlConnection connection = new SqlConnection("YourConnectionString"))
+                //{
+                //    // Open the connection
+                //    connection.Open();
+
+                //    // Construct your SQL query based on the selected value
+                //    string query = "SELECT YourConditionColumn FROM YourTable WHERE YourDropdownColumn = @SelectedValue";
+
+                //    // Create a command
+                //    using (SqlCommand command = new SqlCommand(query, connection))
+                //    {
+                //        // Add parameters to prevent SQL injection
+                //        command.Parameters.AddWithValue("@SelectedValue", selectedValue);
+
+                //        // Execute the query
+                //        object result = command.ExecuteScalar();
+
+                //        // Check the condition (you might need to adjust this based on your database schema)
+                //        if (result != null && result != DBNull.Value)
+                //        {
+                //            condition = Convert.ToBoolean(result);
+                //        }
+                //    }
+                //}
+                object result;
+                if (@selectedValue == "4")
+                {
+
+                    result = 1;
+                }
+                else
+                {
+                    result = 0;
+                }
+                condition = Convert.ToBoolean(result);
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return condition;
+        }
+
+        // Method to load dropdown options
+        private void LoadDropdownOptions()
+        {
+            // Populate dropdown from database, etc.
+            // Example:
+            ddl.Items.Add(new ListItem("Select", "0"));
+            ddl.Items.Add(new ListItem("Option 1", "1"));
+            ddl.Items.Add(new ListItem("Option 2", "2"));
+            ddl.Items.Add(new ListItem("Option 3", "3"));
+            ddl.Items.Add(new ListItem("Other", "4"));
+        }
+        #endregion
     }
 }

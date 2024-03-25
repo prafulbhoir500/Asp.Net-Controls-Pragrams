@@ -10,6 +10,29 @@
     <link href="../Assets/css/bootstrap.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+        function ddlSelectionChanged() {
+            debugger;
+            var selectedValue = document.getElementById('<%= ddl.ClientID %>').value;
+        
+        // Send an AJAX request to the server
+        $.ajax({
+            type: "POST",
+            url: "AjaxFileUpload.aspx/CheckCondition", // Change "YourPageName" to the actual name of your page
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ selectedValue: selectedValue }),
+            dataType: "json",
+            success: function (response) {
+                // Update the TextBox's enabled state based on the response
+                var isEnabled = response.d;
+                document.getElementById('<%= txt.ClientID %>').disabled = !isEnabled;
+            },
+            error: function (xhr, status, error) {
+                console.log("Error occurred while checking condition:", error);
+            }
+        });
+        }
+    </script>
+    <script type="text/javascript">
         //function uploadComplete(sender, args) {
         //    debugger;
         //    // Get the reference to the AsyncFileUpload control
@@ -48,11 +71,11 @@
 
         function uploadComplete(sender, args) {
             debugger;
-            
+
             var fileUpload = sender._element;
             var parentElement = fileUpload.parentNode.parentNode;
 
-           // var fileSize = args.get_length() / (1024 * 1024); // Convert bytes to MB
+            // var fileSize = args.get_length() / (1024 * 1024); // Convert bytes to MB
             var fileSize = args.get_length() / 1024; // Convert bytes to KB
             if (fileSize > 1024) {
                 alert("File size exceeds the limit (1MB). Please upload a smaller file.");
@@ -103,6 +126,16 @@
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddl" runat="server" onchange="ddlSelectionChanged()"></asp:DropDownList>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txt" runat="server" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label for="txtPassword" class="col-sm-4 col-form-label">Password:</label>
                         <div class="col-sm-8">
@@ -175,5 +208,7 @@
             __doPostBack('<%= UpdatePanel1.ClientID %>', '');
         }
     </script>--%>
+    
+
 </body>
 </html>

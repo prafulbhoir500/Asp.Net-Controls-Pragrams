@@ -114,3 +114,14 @@
     <button onclick="checkImageAndOpen('image.jpg')">Open Image in New Tab</button>
 </body>
 </html>
+
+
+---------
+// Replace '~/storage/images/image.png' with the actual file path
+var filePath = '~/storage/images/image.png';
+
+// Create a link element
+var link = document.createElement('a');
+link.href = filePath;
+link.target = '_blank'; // Open in a new tab
+link.click(); // Trigger a click event to open the link

@@ -1,0 +1,65 @@
+<asp:Repeater ID="FileRepeater" runat="server">
+    <ItemTemplate>
+        <asp:AsyncFileUpload ID="AsyncFileUpload1" runat="server"
+            OnClientUploadComplete="uploadComplete"
+            OnClientUploadError="uploadError"
+            OnUploadedComplete="FileUploadComplete"
+            OnUploadedFileError="FileUploadError" />
+        <asp:Button ID="UploadButton" runat="server" Text="Upload" OnClick="UploadButton_Click" />
+        <asp:Label ID="StatusLabel" runat="server" Text=""></asp:Label>
+    </ItemTemplate>
+</asp:Repeater>
+
+
+
+
+protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+        BindRepeater();
+    }
+}
+
+protected void BindRepeater()
+{
+    // Assuming fileList is a List<string> containing file names to display in the repeater
+    FileRepeater.DataSource = fileList;
+    FileRepeater.DataBind();
+}
+
+protected void UploadButton_Click(object sender, EventArgs e)
+{
+    // Handle file upload button click event if needed
+    // This could be used for manual triggering of file uploads if necessary
+}
+
+protected void FileUploadComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
+{
+    // Handle file upload completion
+    // This event is triggered after a file has been successfully uploaded
+    // Access the uploaded file using AsyncFileUpload1.FileName or AsyncFileUpload1.FileBytes
+    // Perform any necessary processing or validation on the uploaded file
+    // You can also update UI elements or display success messages
+}
+
+protected void FileUploadError(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
+{
+    // Handle file upload error
+    // This event is triggered if an error occurs during file upload
+    // Access error details using e.statusMessage or e.ErrorCode
+    // Display error messages or log error details for debugging
+}
+
+// JavaScript function to handle upload completion on client-side
+<script type="text/javascript">
+    function uploadComplete(sender, args) {
+        // Handle upload completion on client-side if necessary
+        // This function can be used to perform any client-side tasks after a file has been successfully uploaded
+    }
+    
+    function uploadError(sender, args) {
+        // Handle upload error on client-side if necessary
+        // This function can be used to display error messages or perform any other client-side tasks if an error occurs during upload
+    }
+</script>

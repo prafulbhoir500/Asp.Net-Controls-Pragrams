@@ -24,3 +24,104 @@
         </div>
     </ItemTemplate>
 </asp:Repeater>
+
+
+<script type="text/javascript">
+    function toggleTextBox() {
+        var ddl = document.getElementById('<%= ddlOptions.ClientID %>');
+        var txtBox = document.getElementById('<%= txtInput.ClientID %>');
+
+        if (ddl.value === "1") {
+            txtBox.disabled = false;
+        } else if (ddl.value === "2") {
+            txtBox.disabled = true;
+        }
+    }
+</script>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Viewer</title>
+    <script>
+        function showImageInNewTab() {
+            // Get the file input element
+            var fileInput = document.getElementById('fileInput');
+            // Check if a file is selected
+            if (fileInput.files && fileInput.files[0]) {
+                // Create a new URL for the selected file
+                var imageUrl = URL.createObjectURL(fileInput.files[0]);
+                // Open a new tab with the image
+                window.open(imageUrl, '_blank');
+            } else {
+                alert('Please select an image.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="file" id="fileInput" accept="image/*" />
+    <button onclick="showImageInNewTab()">Show Image in New Tab</button>
+</body>
+</html>
+
+
+
+-----+++-------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Viewer</title>
+    <script>
+        function openImageInNewTab(imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+
+        function checkImageAndOpen(imageUrl) {
+            var img = new Image();
+            img.onload = function() {
+                openImageInNewTab(imageUrl);
+            };
+            img.onerror = function() {
+                // If image doesn't exist, trigger server-side call to retrieve from database
+                retrieveImageFromDatabase();
+            };
+            img.src = imageUrl;
+        }
+
+        function retrieveImageFromDatabase() {
+            // Make a server-side call to retrieve the image from the database
+            // This call can be done using AJAX or by submitting a form
+            // Upon receiving the image URL from the server, open it in a new tab
+            // Example AJAX call:
+            /*
+            $.ajax({
+                url: 'retrieveImageFromDatabase.aspx',
+                success: function(data) {
+                    openImageInNewTab(data.imageUrl);
+                }
+            });
+            */
+        }
+    </script>
+</head>
+<body>
+    <button onclick="checkImageAndOpen('image.jpg')">Open Image in New Tab</button>
+</body>
+</html>
+
+
+---------
+// Replace '~/storage/images/image.png' with the actual file path
+var filePath = '~/storage/images/image.png';
+
+// Create a link element
+var link = document.createElement('a');
+link.href = filePath;
+link.target = '_blank'; // Open in a new tab
+link.click(); // Trigger a click event to open the link

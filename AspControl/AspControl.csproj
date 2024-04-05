@@ -54,6 +54,9 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Select.HtmlToPdf, Version=23.2.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.23.2.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -85,9 +88,14 @@
     <Content Include="FileUploadControl\FileUpload_ProfilePhoto.aspx" />
     <Content Include="FileUploadControl\FormWithFileUpload.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HTMLReporting\HtmlReportingDemo.aspx" />
+    <Content Include="HTMLReporting\Template.html" />
+    <Content Include="HTMLReporting\TemplateBasic.html" />
+    <Content Include="HTMLReporting\TemplateInvoice.html" />
     <Content Include="LoginForm\LoginForm1.aspx" />
     <Content Include="ToastMessage\dashboard.aspx" />
     <Content Include="ToastMessage\JSToast.aspx" />
+    <Content Include="ValidationControl\RequiredFieldValidationProgramaspx.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +144,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HTMLReporting\HtmlReportingDemo.aspx.cs">
+      <DependentUpon>HtmlReportingDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HTMLReporting\HtmlReportingDemo.aspx.designer.cs">
+      <DependentUpon>HtmlReportingDemo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm\LoginForm1.aspx.cs">
       <DependentUpon>LoginForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -164,6 +179,13 @@
     </Compile>
     <Compile Include="ToastMessage\SiteMaster.Master.designer.cs">
       <DependentUpon>SiteMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationControl\RequiredFieldValidationProgramaspx.aspx.cs">
+      <DependentUpon>RequiredFieldValidationProgramaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ValidationControl\RequiredFieldValidationProgramaspx.aspx.designer.cs">
+      <DependentUpon>RequiredFieldValidationProgramaspx.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
